@@ -1,0 +1,57 @@
+AppWorks School-Android Class : Week 2 Assigment
+
+1. What is Inheritance ? Try to explain in Mandarin.
+某個父類別對物件的定義加以擴充，而制訂出新子類別定義。
+子類別可以繼承父類別原來的某些定義，
+並也可能增加原來的父類別所沒有的定義，或者是重新定義父類別中的某些特性。
+繼承最主要目的是藉由抽象化過程來排除在subclass中重複的程式碼。
+
+2. How to split a string in Android? Explain your understanding, and even better to attach
+some sample code.
+
+可以使用 string.split()的方法分開兩個string，但是要以符號做為切割兩個string的界線。
+例如(以 . 為切割界線):
+String originString = " 我為人人.人人為我";
+String[] afterString = originString.split("\\.");
+separated[0]; // "我為人人"
+separated[1]; // "人人為我"
+
+
+3. What kind of key-value pair collection we use in Android? Attach a sample code that use
+for-loop to print each key-value pair.
+
+Map is a set of key-value pairs. Keys are unique, and each of them maps to exactly one value. 
+The values can be duplicates. Maps are useful for storing logical connections between objects, 
+for example, an employee's ID and their position.
+
+
+Map<String,Integer>dict = new HashMap<String,Integer>()
+for (int i = 0, l = keys.length; i < l; i++) {
+    dict.println(keys[i], vals[i]);
+  }
+
+
+
+4. What’s the difference between ArrayList and LinkedList? Try to explain in Mandarin.
+
+當需要頻繁的取得List裡面資料時，使用ArrayList效率較好，
+因為陣列的資料結構array採用隨機存取的方式，
+也就是直接透過Index取得值。
+
+然而如需新增資料和刪除資料時，應使用LinkedList。
+由於新增/刪除資料時，只要改被新增/刪除的那筆資料之前一個節點所指向的位址即可。
+
+
+5. What are Value Type variables? List out the Value Type variables you know.
+
+value type資料類別的程式變數會直接在記憶體中空出一個空間，讓我直接assign一個值在該位置上。
+例如: boolean、byte 、char 、decimal、 double、 float 、int 、
+      long 、sbyte、short、 uint 、ulong 、ushort
+
+6. What’s the maximum value of Int ? If you want to represent integers larger than the limit,
+what should you do instead of using int variables?
+
+int 的最大值為2,147,483,647。 可以用字串輸入，使用BigInteger類別來表示。
+
+
+
