@@ -1,0 +1,62 @@
+1. What is ​Inheritance​? Try to explain in Mandarin. 
+繼承是它可以讓我們建立一個包含所有其他類別共通變數和函式的類別（稱為父類別／主類別／超類別super class），然後讓這些要使用的類別去繼承他，繼承了父類別的類別就稱為子類別（subclass），它會擁有所有父類別有的變數與函式。這使我們在建立相類似的類別時不用一一重寫和定義，當中若要有任何更改就只要使用Override覆寫就可。不過要注意的是Kotlin預設所有的類別都是final來防止內容被其他類別修改，若要把某類別變成父類別，和想Override父類別中的函數和變數，則都要在前面加上open。
+
+2. How to ​split​ a string in Android? Explain your understanding, and even better to attach some sample code. 
+如果是截取字串，常用的有subSequence()和subString()，它們兩者的用法很相似，都必須要在括號內填入想截取字串的起始位置和「結束位置-1」才完成截取；不同的是，subSequence()回傳的是CharSequence，而subString()回傳的是String。CharSequence和String的差別在於，前者是一個介面，而String是實作CharSequence的類別。因此，String也是CharSequence，但CharSequence不會是String。例子如下︰
+	
+	val sentence = "Hello my name is Tina,nice to meet you!"
+	val subString = sentence.substring(6,21) //回傳型態string
+    val subSequence1 = sentence.subSequence(6,21) //回傳型態CharSequence
+    val subSequence2 : String = sentence.subSequence(6,21) //Type mismatch
+
+    println(subString)
+    println(subSequence1)
+
+    Result:
+    my name is Tina
+	my name is Tina
+
+如果是分隔字串，常用的則有split()與chunked()。split()要在括號內輸入要分隔的定義符號（delimiter）；chunked()則要在括號內輸入要分割字串的位置(size)，從以下的輸出結果可見，編繹器會用「，」來分隔字串。
+	
+	val sentence = "Hello my name is Tina,nice to meet you!"
+	val splitTheSentence = sentence.split(" ")
+	val chunked = sentence.chunked(21)
+
+	println(splitTheSentence)
+	println(chunked)
+
+	Result︰
+	[Hello, my, name, is, Tina,nice, to, meet, you!]
+	[Hello my name is Tina, ,nice to meet you!]
+
+
+3. What kind of ​key-value​ pair collection we use in Android? Attach a sample code that use for-loop to print each key-value pair. 
+在Android中，我們會用在集合Map（包括Hash Map、Mutable Map)中用到鍵/值（key-value​ pair）。他們裏面的每一個項目其實都包含了2個物件，即一個鍵（key）和一個相關的值（value）。我們可以透過在get()和getValue()中輸入鍵來取得鍵的值，也可以利用for迴圈來印出所有的鍵和值，例子如下︰
+
+	fun main() {
+    	val studentMap : Map<String, Int>
+    	studentMap = mapOf("Mary" to 1, "Tom" to 2, "Anna" to 3, "Peter" to 4)
+
+    	for((key, value) in studentMap){
+       		println("Student Name : $key ; Student Number : $value")
+    	}
+	}
+
+	Result: 
+	Student Name : Mary ; Student Number : 1
+	Student Name : Tom ; Student Number : 2
+	Student Name : Anna ; Student Number : 3
+	Student Name : Peter ; Student Number : 4
+
+4. What’s the ​difference​ between ArrayList and LinkedList? Try to explain in Mandarin. 
+ArrayList和LinkedList是兩種不同的資料結構。
+ArrayList陣列是順序的將所有資料儲存在一塊連續的記憶體當中，它的好處是便於查找，但缺點在於當插入或刪除任何資料時都會耗費大量的記憶體資源去移動既有資料的位置。
+LinkedList鏈結串列就不是把資料儲存在一塊連續的記憶體中，而是把它們分散在記憶體的不同位置，然後再建立一個連接點（pointer）把這些資料串連起來。它的優點是增加或刪除都十分方便且不會耗費大量的記憶體，但查找資料時只能依靠連接點的位置一個一個的按順序查找、速度較慢，而且一個連接斷裂，資料就會遺失。
+
+5. What are ​Value Type​ variables? List out the Value Type variables you know. 
+​數值型別變數或實值型別變數（Value Type​ variables）是相對參考型別變數（Reference Type variables）而言的。當我們宣告一個變數為數值型態時，電腦就會自動把該變數的值儲存在記憶體的stack的一個位置中，而使這個變數直接指向該值。若我們把同等值指派給其他的變數，兩個變數也是獨立儲存在不同的位置和空間上，就算更改也不會互相影響。就和參考型別變數不同是在於，參考型別變數所指向的是object在記憶體heap中的一個儲存了值的參考位置而不是值的本身，所以當我們指派同一個資料給不同的變數時，會使兩個變數都指向同樣的參考位置，而不會在記憶體中再建立一個新的空間。因此若兩個變數都指向同一參考位置時，我們修改前一個變數的值就時就必定會影響到另一個變數。
+數值型別變數有︰byte、int、char、long、short、boolean、double、float、enum等
+參考型別變數有︰string、array、class、interface、object等
+
+6. What’s the ​maximum​ value of ​Int​? If you want to represent integers larger than the limit, what should you do instead of using int variables? 
+Integer整數最大能儲存32位元的整數，即2^31-1，所以最大值會是2,147,483,647。如果想要指派的值大於32位元整數，可以改變其資料型態，把變數宣告成長整數long，這樣就可以存入更大的數字。
